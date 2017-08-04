@@ -1,0 +1,79 @@
+  <!DOCTYPE html>
+  <html ng-app="unitary">
+    <head>
+      <meta charset="utf-8" />
+      <title>AngularJS</title>
+      <link rel="stylesheet" href="css/style.css" />
+      <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+      </head>
+
+    <body  ng-controller="MainCtrl">
+      <div class="container container-fluid">
+
+      <div class="well" ng-show="showError">
+        <ul>
+          <li ng-repeat="error in errors" style="color: red;">
+               <span ng-bind = "error" ></span>
+          </li>
+        </ul>
+      </div>
+      <form class="form-horizontal" novalidate name="form" ng-submit="submit();">
+          <div class="well">
+            <label>From Date</label>
+              <div id="date" class="input-append" datetimez ng-model="fromDate">
+                <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" required="required"></input>
+                <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                </span>
+              </div>
+          </div>
+          <div class="well">
+           <label>To Date</label>
+            <div id="date" class="input-append" datetimez ng-model="toDate">
+              <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" required="required"></input>
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+          </div>
+          <div class="well">
+          <label>Tags</label>
+            <select ng-model="tagItem" multiple>      
+                <option value="DT_5_3">DT_5_3</option>
+                <option value="PT_2_9">PT_2_9</option>
+                <option value="LT_2_6">LT_2_6</option>
+                <option value="O2A">O2A</option>
+                <option value="TE_2_4">TE_2_4</option>
+                <option value="Percentage Load">Percentage Load</option>
+            </select>
+          </div>
+          <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+      </form>
+    <h1 ng-bind="message"></h1>
+    <div ng-show="records.length>0">
+      <button export-to-csv style="margin-bottom: 20px;" class="btn btn-success">Download CSV</button>
+      <table class="scrollTable">
+        <th ng-bind="tagItemCopy[0]"></th><th ng-bind="tagItemCopy[1]"></th>
+        <tr ng-repeat="x in records">
+          <td ng-bind="x[tagItemCopy[0]]"></td>
+          <td ng-bind="x[tagItemCopy[1]]"></td>
+        </tr>
+      </table>
+      <hc-pie-chart title="Machine usage" data="pieData" axis="tagItemCopy" style="margin-top: 20px;">Placeholder for pie chart</hc-pie-chart>
+    </div>
+      
+      </body>
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script src="extJavascript/dateText.js"></script>
+      <script data-require="angular.js@1.0.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js" data-semver="1.0.8"></script>
+      <script src="app.js"></script>
+      <script src="controllers/mainCtrl.js"></script>
+      <script src="directive/downloadCSV.js"></script>
+      <script src="directive/highchartDirective.js"></script>
+      <script src="services/unitaryFactory.js"></script>
+  </html>

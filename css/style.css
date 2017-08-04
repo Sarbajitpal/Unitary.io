@@ -1,0 +1,21 @@
+.scrollTable {
+	width :370px;
+	padding-top: 30px;
+}
+
+.scrollTable thead {
+    display: inline-block;
+    width: 370px;
+    height: 20px;
+}
+.scrollTable tbody {
+    height: 150px;
+    display: inline-block;
+    width: 370px;
+    overflow: auto;
+}
+
+.scrollTable td {
+    padding-right: 30px;
+    padding-left: 20px;
+}
